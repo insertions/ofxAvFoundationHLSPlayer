@@ -25,6 +25,7 @@ public:
     
     void drawDebug();
     void draw(float x, float y);
+    void draw(float x, float y, float width, float height);
     float getWidth();
     float getHeight();
     float duration;
@@ -38,7 +39,10 @@ public:
     string getInfo();
     vector<string> errors;
     void mute();
+    void stop();
+    
     int pixelSize;
+    
 #ifdef __OBJC__
     AVFPlayer* videoPlayer;
 #else

@@ -36,17 +36,20 @@
 
 -(void) updatePixels;
 -(void) releasePixels;
--(void)seekToTimeInSeconds:(int)seconds;
+-(void) seekToTimeInSeconds:(int)seconds;
 -(float) duration;
 -(float) getCurrentTime;
+-(float) getWidth;
+-(float) getHeight;
 -(void) update;
--(bool)isFrameNew;
+-(bool) isFrameNew;
 
 -(void) togglePause;
 -(void) pause;
 -(void) resume;
 -(void) mute;
 -(void) draw;
+-(void) stop;
 @end
 
 #endif

@@ -35,6 +35,8 @@ bool ofxAvFoundationHLSPlayer::load(string name)
     NSURL* url = [NSURL URLWithString:[NSString stringWithUTF8String:name.c_str()]];
     
     [videoPlayer loadFromURL:url];
+    
+    cout << videoPlayer <<endl;
 
 }
 
@@ -67,6 +69,19 @@ void ofxAvFoundationHLSPlayer::update()
     }
 }
 
+float ofxAvFoundationHLSPlayer::getWidth() {
+    return [videoPlayer getWidth];
+}
+
+float ofxAvFoundationHLSPlayer::getHeight() {
+    return [videoPlayer getHeight];
+}
+
+ofTexture&  ofxAvFoundationHLSPlayer::getTexture() {
+    return videoPlayer->outputTexture;
+}
+
+
 void ofxAvFoundationHLSPlayer::drawDebug()
 {
     
@@ -85,6 +100,16 @@ void ofxAvFoundationHLSPlayer::drawDebug()
     }
 }
 
+void ofxAvFoundationHLSPlayer::draw(float x, float y, float width, float height)
+{
+    if(videoPlayer->outputTexture.isAllocated())
+    {
+        videoPlayer->outputTexture.draw(x,
+                                        y,
+                                        width,
+                                        height);
+    }
+}
 
 void ofxAvFoundationHLSPlayer::draw(float x, float y)
 {
@@ -123,6 +148,19 @@ void ofxAvFoundationHLSPlayer::mute()
     [videoPlayer mute];
     
 }
+
+void ofxAvFoundationHLSPlayer::stop()
+{
+    [videoPlayer dealloc];
+    videoPlayer = NULL;
+    pixels = NULL;
+    duration = 0;
+    pixelSize = 0;
+    //[AVFPlayer dealloc]
+    
+}
+
+
 string ofxAvFoundationHLSPlayer::getInfo()
 {
     
